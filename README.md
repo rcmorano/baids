@@ -7,7 +7,18 @@
 Just call the main script with the "install" argument:
 
 ```
-curl -sSL https://raw.githubusercontent.com/rcmorano/docker-baids/master/docker-baids | bash -s install
+root@6169068ffaa9:/# curl -sSL https://raw.githubusercontent.com/rcmorano/docker-baids/master/docker-baids | bash -s install
+Cloning into '/root/.docker-baids'...
+remote: Counting objects: 33, done.
+remote: Compressing objects: 100% (20/20), done.
+remote: Total 33 (delta 11), reused 28 (delta 6)
+Unpacking objects: 100% (33/33), done.
+
+[+] 'docker-baids' is now installed!
+[-] Now please, load 'docker-baids' executing:
+
+    source /root/.docker-baids/docker-baids
+root@6169068ffaa9:/#
 ```
 
 It just clones the project at '~/.docker-baids/' and adds an include in your '.bashrc'.
