@@ -19,8 +19,8 @@ You will usually type 'docker-' and push <TAB> to complete the command.
 Here is the current functions list and some info. Although most are self explanatory, some need notes:
 
 * **docker-baids-reload**: reload aliases and functions
-* **docker-baids-remap**: recreates alias files from functions in 'functions.d' dir, then reloads.
-It makes acronym-based aliases for each docker-baids function. In e.g.:
+* **docker-baids-remap**: recreates alias files from functions in 'functions.d' dir, then reloads them.
+It makes acronym-based aliases for each function in a separated file in 'aliases.d'. In e.g.:
 ```
 # contents of $HOME/.docker-baids/aliases.d/00-docker-baids
 alias dbr='docker-baids-reload'
