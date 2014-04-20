@@ -42,7 +42,7 @@ root@6169068ffaa9:/#
 
 # Usage
 
-You will usually type 'docker-' and push \<TAB\> to complete the command.
+You will usually type 'docker-' and push \<TAB\> to complete the command or remember some of the shortened aliases :]
 
 Here is the current functions list and some info. Although most are self explanatory, some need notes:
 
