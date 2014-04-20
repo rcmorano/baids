@@ -64,6 +64,22 @@ function docker-container-diff-most-recent() {
 
 }
 
+function docker-container-ip() {
+
+    CONTAINER_ID=$1
+    if [ -z "$CONTAINER_ID" ]
+    then
+        CONTAINER_ID=$(docker-container-most-recent)
+    fi
+    if [ ! -z "$CONTAINER_ID" ]
+    then
+        docker inspect --format '{{ .NetworkSettings.IPAddress }}' $CONTAINER_ID
+    else
+        echo "There are no running containers!"
+    fi
+
+}
+
 function docker-container-inspect-most-recent() {
 
     LAST_CONTAINER=$(docker-container-most-recent)
