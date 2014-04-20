@@ -28,6 +28,7 @@ alias dbre='docker-baids-remap'
 alias dbu='docker-baids-upgrade'
 alias dcmr='docker-container-most-recent'
 alias dcdmr='docker-container-diff-most-recent'
+alias dci='docker-container-ip'
 alias dcimr='docker-container-inspect-most-recent'
 alias dcra='docker-container-remove-all'
 alias dcranr='docker-container-remove-all-non-running'
@@ -38,6 +39,8 @@ alias diro='docker-image-remove-orphan'
 * **docker-baids-upgrade**: pull rebases your docker-baids installation. Be careful :]
 * **docker-container-most-recent**: returns the most recently launched container's id
 * **docker-container-diff-most-recent**: 'docker diff' the most recently launched container
+* **docker-container-ip**: 'docker inspect' the most recently launched container and print its IP.
+It admits a container ID as argument also.
 * **docker-container-inspect-most-recent**: 'docker inspect' the most recently launched container
 * **docker-container-remove-all**: removes every existant container in localhost.
 NO**TE: It tries to kill every running container, then, it tries to remove all of them.
