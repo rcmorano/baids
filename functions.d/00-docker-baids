@@ -41,7 +41,7 @@ function docker-baids-upgrade() {
     cd $DBAIDS_HOME
     git pull --rebase
     docker-baids-reload
-    cd -
+    cd $OLDPWD
 
 }
 
