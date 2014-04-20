@@ -53,7 +53,7 @@ NO**TE: It calls 'docker-container-remove-all', then, tries to remove all the im
 # Extending/Contributing
 
 1. Fork project
-2. Put some bash functions in 'functions.d' dir
+2. Put some bash functions in 'functions.d' dir (in e.g. your custom 'docker run for your current project)
 3. Execute 'docker-baids-remap' and get shortened aliases for your functions
 4. Commit your changes
 5. Optionally, if you consider that your functions are generic enough to help someone out there, send me a pull request! 
