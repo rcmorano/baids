@@ -18,5 +18,5 @@ then
     exit 0
 fi
 
-. ${DBAIDS_FUNCS_DIR}/*
-. ${DBAIDS_ALIAS_DIR}/*
+source ${DBAIDS_FUNCS_DIR}/*
+source ${DBAIDS_ALIAS_DIR}/*
