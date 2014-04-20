@@ -1,0 +1,74 @@
+# Description
+
+'docker-baids' stands for "docker bash aids" and it's just a bunch of general purpose bash aliases that turned into a bunch of general purpose bash functions+aliases for 'docker' project.
+
+# Installation
+
+Just call the main script with the "install" argument:
+
+```
+curl -sSL https://raw.githubusercontent.com/rcmorano/docker-baids/master/docker-baids | bash -s install
+```
+
+It just clones the project at '~/.docker-baids/' and adds an include in your '.bashrc'.
+
+# Usage
+
+You will usually type 'docker-' and push <TAB> to complete the command.
+
+Here is the current functions list and some info. Although most are self explanatory, some need notes:
+
+* **docker-baids-reload**: reload aliases and functions
+* **docker-baids-remap**: recreates alias files from functions in 'functions.d' dir, then reloads.
+It makes acronym-based aliases for each docker-baids function. In e.g.:
+```
+# contents of $HOME/.docker-baids/aliases.d/00-docker-baids
+alias dbr='docker-baids-reload'
+alias dbre='docker-baids-remap'
+alias dbu='docker-baids-upgrade'
+alias dcmr='docker-container-most-recent'
+alias dcdmr='docker-container-diff-most-recent'
+alias dcimr='docker-container-inspect-most-recent'
+alias dcra='docker-container-remove-all'
+alias dcranr='docker-container-remove-all-non-running'
+alias dimr='docker-image-most-recent'
+alias dira='docker-image-remove-all'
+alias diro='docker-image-remove-orphan'
+```
+* **docker-baids-upgrade**: pull rebases your docker-baids installation. Be careful :]
+* **docker-container-most-recent**: returns the most recently launched container's id
+* **docker-container-diff-most-recent**: 'docker diff' the most recently launched container
+* **docker-container-inspect-most-recent**: 'docker inspect' the most recently launched container
+* **docker-container-remove-all**: removes every existant container in localhost.
+NO**TE: It tries to kill every running container, then, it tries to remove all of them.
+* **docker-container-remove-all-non-running**: removes only the non-running containers
+* **docker-image-most-recent**: returns the most recently build image's id
+* **docker-image-remove-all**: Are you sure? Tries to remove every image in docker host.
+NO**TE: It calls 'docker-container-remove-all', then, tries to remove all the images.
+* **docker-image-remove-orphan**: It tries to remove every non tagged image.
+
+# Extending/Contributing
+
+1. Fork project
+2. Put some bash functions in 'functions.d' dir
+3. Execute 'docker-baids-remap' and get shortened aliases for your functions
+4. Commit your changes
+5. Optionally, if you consider that your functions are generic enough to help someone out there, send me a pull request! 
+
+# License and Author                                                             
+                                                                                 
+Author:: Roberto C. Morano (<rcmova@gmail.com>)                                  
+                                                                                 
+Copyright:: 2014, Roberto C. Morano (<rcmova@gmail.com>)                         
+                                                                                 
+Licensed under the Apache License, Version 2.0 (the "License");                  
+you may not use this file except in compliance with the License.                 
+You may obtain a copy of the License at                                          
+                                                                                 
+    http://www.apache.org/licenses/LICENSE-2.0                                   
+                                                                                 
+Unless required by applicable law or agreed to in writing, software              
+distributed under the License is distributed on an "AS IS" BASIS,                
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.         
+See the License for the specific language governing permissions and              
+limitations under the License.

@@ -1,0 +1,12 @@
+#!/bin/bash
+alias dbr='docker-baids-reload'
+alias dbre='docker-baids-remap'
+alias dbu='docker-baids-upgrade'
+alias dcmr='docker-container-most-recent'
+alias dcdmr='docker-container-diff-most-recent'
+alias dcimr='docker-container-inspect-most-recent'
+alias dcra='docker-container-remove-all'
+alias dcranr='docker-container-remove-all-non-running'
+alias dimr='docker-image-most-recent'
+alias dira='docker-image-remove-all'
+alias diro='docker-image-remove-orphan'

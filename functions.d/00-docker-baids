@@ -1,0 +1,106 @@
+#!/bin/bash 
+
+function docker-baids-reload() {
+    . $DBAIDS
+}
+
+function docker-baids-remap() {
+
+    for file in ${DBAIDS_FUNCS_DIR}/*
+    do
+        FILENAME=$(basename $file)
+        ALIAS_FILE="${DBAIDS_ALIAS_DIR}/${FILENAME}"
+        # add shebang just in case you'd like to execute the file itself
+        echo "#!/bin/bash" > $ALIAS_FILE
+
+        for function in $(grep ^function "$file" | awk '{print $2}' | sed 's|()||g')
+        do
+            WORDS=$(echo $function | sed 's|-|$file |g')
+            ALIAS=""
+
+            for word in $WORDS
+            do
+                ALIAS="${ALIAS}${word:0:1}"
+            done
+            # avoid alias duplication
+            word_index=1
+            while `grep -q "${ALIAS}=" ${DBAIDS_ALIAS_DIR}/*`
+            do
+                ALIAS=${ALIAS}${word:$word_index:1}
+                word_index=$(expr $word_index + 1)
+            done    
+
+            echo "alias $ALIAS='$function'" >> $ALIAS_FILE
+        done
+    done
+    docker-baids-reload
+}
+
+function docker-baids-upgrade() {
+
+    git pull --rebase $DBAIDS_HOME
+    docker-baids-reload
+
+}
+
+function docker-container-most-recent() {
+
+    docker ps | grep -v ^CONTAINER | head -n1 | awk '{print $1}'
+
+}
+
+function docker-container-diff-most-recent() {
+
+    LAST_CONTAINER=$(docker-container-most-recent)
+
+    if [ ! -z "$LAST_CONTAINER" ]
+    then
+        docker diff $LAST_CONTAINER
+    else
+        echo "There are no running containers!"
+    fi
+
+}
+
+function docker-container-inspect-most-recent() {
+
+    LAST_CONTAINER=$(docker-container-most-recent)
+    if [ ! -z "$LAST_CONTAINER" ]
+    then
+        docker inspect $LAST_CONTAINER
+    else
+        echo "There are no running containers!"
+    fi
+
+}
+
+function docker-container-remove-all() {
+
+    docker ps -a | grep -v ^CONTAINER | awk '{print $1}' | xargs -I % sh -c "docker kill %; docker rm %"
+
+}
+
+function docker-container-remove-all-non-running() {
+
+    docker ps -a | grep -v ^CONTAINER | grep Exit | awk '{print $1}' | xargs -I % sh -c "docker kill %; docker rm %"
+
+}
+
+function docker-image-most-recent() {
+    
+    docker images | grep -v ^REPOSITORY | head -n1 | awk '{print $3}'
+
+}
+
+function docker-image-remove-all() {
+
+    docker-container-remove-all
+    docker images -a | grep -v ^REPOSITORY | awk '{print $3}' | xargs docker rmi &> /dev/null
+
+}
+
+function docker-image-remove-orphan() {
+
+    docker images | grep "<none>" | awk '{print $3}' | xargs docker rmi
+
+}
