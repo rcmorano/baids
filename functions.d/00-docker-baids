@@ -94,13 +94,13 @@ function docker-container-inspect-most-recent() {
 
 function docker-container-remove-all() {
 
-    docker ps -a | grep -v ^CONTAINER | awk '{print $1}' | xargs -I % sh -c "docker kill %; docker rm %"
+    docker ps -a | grep -v ^CONTAINER | awk '{print $1}' | xargs -rI % sh -c "docker kill %; docker rm %"
 
 }
 
 function docker-container-remove-all-non-running() {
 
-    docker ps -a | grep -v ^CONTAINER | grep Exit | awk '{print $1}' | xargs -I % sh -c "docker kill %; docker rm %"
+    docker ps -a | grep -v ^CONTAINER | grep Exit | awk '{print $1}' | xargs -rI % sh -c "docker kill %; docker rm %"
 
 }
 
@@ -113,12 +113,12 @@ function docker-image-most-recent() {
 function docker-image-remove-all() {
 
     docker-container-remove-all
-    docker images -a | grep -v ^REPOSITORY | awk '{print $3}' | xargs docker rmi &> /dev/null
+    docker images -a | grep -v ^REPOSITORY | awk '{print $3}' | xargs -r docker rmi
 
 }
 
 function docker-image-remove-orphan() {
 
-    docker images | grep "<none>" | awk '{print $3}' | xargs docker rmi
+    docker images | grep "<none>" | awk '{print $3}' | xargs -r docker rmi
 
 }
