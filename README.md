@@ -12,6 +12,23 @@ curl -sSL https://raw.githubusercontent.com/rcmorano/docker-baids/master/docker-
 
 It just clones the project at '~/.docker-baids/' and adds an include in your '.bashrc'.
 
+# Upgrade
+
+Just call 'docker-baids-upgrade' or its alias 'dbu':
+
+```
+root@6169068ffaa9:/# dbu 
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/rcmorano/docker-baids
+   2093d14..b3d2ad4  master     -> origin/master
+   First, rewinding head to replay your work on top of it...
+   Fast-forwarded master to b3d2ad4623f1371ef1044932518ab98200017f32.
+root@6169068ffaa9:/#
+```
+
 # Usage
 
 You will usually type 'docker-' and push <TAB> to complete the command.
