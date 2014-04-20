@@ -38,8 +38,10 @@ function docker-baids-remap() {
 
 function docker-baids-upgrade() {
 
-    git pull --rebase $DBAIDS_HOME
+    cd $DBAIDS_HOME
+    git pull --rebase
     docker-baids-reload
+    cd -
 
 }
 
