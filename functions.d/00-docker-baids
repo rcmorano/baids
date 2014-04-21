@@ -15,7 +15,7 @@ function docker-baids-remap() {
 
         for function in $(grep ^function "$file" | awk '{print $2}' | sed 's|()||g')
         do
-            WORDS=$(echo $function | sed 's|-|$file |g')
+            WORDS=$(echo $function | sed 's|-| |g')
             ALIAS=""
 
             for word in $WORDS
