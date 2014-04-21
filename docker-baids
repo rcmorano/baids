@@ -18,5 +18,7 @@ then
     exit 0
 fi
 
-source ${DBAIDS_FUNCS_DIR}/*
-source ${DBAIDS_ALIAS_DIR}/*
+for file in ${DBAIDS_FUNCS_DIR}/* ${DBAIDS_ALIAS_DIR}/*
+do
+    source $file
+done
