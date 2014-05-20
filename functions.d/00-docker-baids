@@ -13,7 +13,7 @@ function docker-baids-remap() {
         # add shebang just in case you'd like to execute the file itself
         echo "#!/bin/bash" > $ALIAS_FILE
 
-        for function in $(grep ^function "$file" | awk '{print $2}' | sed 's|()||g')
+        for function in $(grep ^function "$file" | grep -v APP_NAME | awk '{print $2}' | sed 's|()||g')
         do
             WORDS=$(echo $function | sed 's|-| |g')
             ALIAS=""
