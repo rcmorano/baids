@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export DBAIDS_HOME="${HOME}/.docker-baids"
-export DBAIDS="${DBAIDS_HOME}/docker-baids"
+export DBAIDS_HOME="${HOME}/.baids"
+export DBAIDS="${DBAIDS_HOME}/baids"
 export DBAIDS_FUNCS_DIR="${DBAIDS_HOME}/functions.d"
 export DBAIDS_ALIAS_DIR="${DBAIDS_HOME}/aliases.d"
-export GIT_REPO="https://github.com/rcmorano/docker-baids.git"
+export GIT_REPO="https://github.com/rcmorano/baids.git"
 
 INSTALL=$1
 if [ "$INSTALL" == "install" ]
@@ -12,8 +12,8 @@ then
     BASH_RC="${HOME}/.bashrc"
     git clone $GIT_REPO $DBAIDS_HOME
     grep -q "$DBAIDS" $BASH_RC || echo ". $DBAIDS" >> $BASH_RC
-    echo -e "\n[+] 'docker-baids' is now installed!"
-    echo -e "[-] Now please, load 'docker-baids' executing:\n"
+    echo -e "\n[+] 'baids' is now installed!"
+    echo -e "[-] Now please, load 'baids' executing:\n"
     echo "    source $DBAIDS"
     exit 0
 fi

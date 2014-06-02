@@ -1,0 +1,46 @@
+#!/bin/bash 
+
+function baids-reload() {
+    source $BAIDS
+}
+
+function baids-remap() {
+
+    for file in ${BAIDS_FUNCS_DIR}/*
+    do
+        FILENAME=$(basename $file)
+        ALIAS_FILE="${BAIDS_ALIAS_DIR}/${FILENAME}"
+        # add shebang just in case you'd like to execute the file itself
+        echo "#!/bin/bash" > $ALIAS_FILE
+
+        for function in $(grep ^function "$file" | grep -v APP_NAME | awk '{print $2}' | sed 's|()||g')
+        do
+            WORDS=$(echo $function | sed 's|-| |g')
+            ALIAS=""
+
+            for word in $WORDS
+            do
+                ALIAS="${ALIAS}${word:0:1}"
+            done
+            # avoid alias duplication
+            word_index=1
+            while `grep -q "${ALIAS}=" ${BAIDS_ALIAS_DIR}/*`
+            do
+                ALIAS=${ALIAS}${word:$word_index:1}
+                word_index=$(expr $word_index + 1)
+            done    
+
+            echo "alias $ALIAS='$function'" >> $ALIAS_FILE
+        done
+    done
+    baids-reload
+}
+
+function baids-upgrade() {
+
+    cd $BAIDS_HOME
+    git pull --rebase
+    baids-reload
+    cd $OLDPWD
+
+}

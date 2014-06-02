@@ -1,7 +1,7 @@
 #!/bin/bash
-alias dbr='docker-baids-reload'
-alias dbre='docker-baids-remap'
-alias dbu='docker-baids-upgrade'
+alias dbr='baids-reload'
+alias dbre='baids-remap'
+alias dbu='baids-upgrade'
 alias dcmr='docker-container-most-recent'
 alias dcdmr='docker-container-diff-most-recent'
 alias dci='docker-container-ip'
