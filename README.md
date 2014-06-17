@@ -7,6 +7,12 @@
 Just call the main script with the "install" argument:
 
 ```
+curl -sSL https://raw.githubusercontent.com/rcmorano/baids/master/baids | bash -s install
+```
+
+Example:
+
+```
 root@6169068ffaa9:/# curl -sSL https://raw.githubusercontent.com/rcmorano/baids/master/baids | bash -s install
 Cloning into '/root/.baids'...
 remote: Counting objects: 33, done.
@@ -60,7 +66,7 @@ alias bu='baids-upgrade'
 # Extending/Contributing
 
 1. Fork project
-2. Put some bash functions in 'functions.d' dir (in e.g. your custom 'docker run' for xexposing port 80 for a determined project)
+2. Put some bash functions in 'functions.d' dir 
 3. Execute 'baids-remap' and get shortened aliases for your functions
 4. Commit your changes
 5. Optionally, if you consider that your functions are generic enough to help someone out there, send me a pull request! 
