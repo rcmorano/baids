@@ -18,7 +18,7 @@ then
     exit 0
 fi
 
-for file in $(find ${BAIDS_FUNCS_DIR} ${BAIDS_ALIAS_DIR} -type f | grep -iv '\.git\|md$')
+for file in $(find -L ${BAIDS_FUNCS_DIR} ${BAIDS_ALIAS_DIR} -type f | grep -iv '\.git\|md$')
 do
     source $file
 done
