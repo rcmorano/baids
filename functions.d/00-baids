@@ -6,14 +6,14 @@ function baids-reload() {
 
 function baids-remap() {
 
-    for file in ${BAIDS_FUNCS_DIR}/*
+    for file in ${BAIDS_FUNCS_DIR}/*/*
     do
         FILENAME=$(basename $file)
         ALIAS_FILE="${BAIDS_ALIAS_DIR}/${FILENAME}"
         # add shebang just in case you'd like to execute the file itself
         echo "#!/bin/bash" > $ALIAS_FILE
 
-        for function in $(grep ^function "$file" | grep -v APP_NAME | awk '{print $2}' | sed 's|()||g')
+        for function in $(grep ^function "$file" 2> /dev/null | grep -v APP_NAME | awk '{print $2}' | sed 's|()||g')
         do
             WORDS=$(echo $function | sed 's|-| |g')
             ALIAS=""
