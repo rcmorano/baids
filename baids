@@ -7,7 +7,7 @@ export BAIDS_ALIAS_DIR="${BAIDS_HOME}/aliases.d"
 export GIT_REPO="https://github.com/rcmorano/baids.git"
 
 INSTALL=$1
-if [ "$INSTALL" == "install" ]
+if [[ "$INSTALL" == "install" ]]
 then
     BASH_RC="${HOME}/.bashrc"
     git clone $GIT_REPO $BAIDS_HOME
