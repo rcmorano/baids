@@ -10,8 +10,13 @@ INSTALL=$1
 if [[ "$INSTALL" == "install" ]]
 then
     BASH_RC="${HOME}/.bashrc"
+    ZSH_RC="${HOME}/.zshrc"
     git clone $GIT_REPO $BAIDS_HOME
     grep -q "$BAIDS" $BASH_RC || echo ". $BAIDS" >> $BASH_RC
+    if [ -f $ZSH_RC ]
+     then 
+       grep -q "$BAIDS" $ZSH_RC || echo ". $BAIDS" >> $ZSH_RC
+    fi       
     echo -e "\n[+] 'baids' is now installed!"
     echo -e "[-] Now please, load 'baids' executing:\n"
     echo "    source $BAIDS"
