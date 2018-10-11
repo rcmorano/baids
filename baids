@@ -11,11 +11,14 @@ if [[ "$INSTALL" == "install" ]]
 then
     BASH_RC="${HOME}/.bashrc"
     ZSH_RC="${HOME}/.zshrc"
-    git clone $GIT_REPO $BAIDS_HOME
-    grep -q "$BAIDS" $BASH_RC || echo ". $BAIDS" >> $BASH_RC
-    if [ -f $ZSH_RC ]
-     then 
-       grep -q "$BAIDS" $ZSH_RC || echo ". $BAIDS" >> $ZSH_RC
+    git clone $GIT_REPO "$BAIDS_HOME"
+    if [ -f "$BASH_RC" ]
+    then
+      grep -q "$BAIDS" "$BASH_RC" || echo ". \"${BAIDS}\"" >> "$BASH_RC"
+    fi
+    if [ -f "$ZSH_RC" ]
+    then 
+      grep -q "$BAIDS" "$ZSH_RC" || echo ". \"${BAIDS}\"" >> "$ZSH_RC"
     fi       
     echo -e "\n[+] 'baids' is now installed!"
     echo -e "[-] Now please, load 'baids' executing:\n"
@@ -23,7 +26,7 @@ then
     exit 0
 fi
 
-for file in $(find -L ${BAIDS_FUNCS_DIR} ${BAIDS_ALIAS_DIR} -type f | grep -iv '\.git\|md$')
+for file in $(find -L "${BAIDS_FUNCS_DIR}" "${BAIDS_ALIAS_DIR}" -type f | grep -iv '\.git\|md$')
 do
-    source $file
+    source "$file"
 done
