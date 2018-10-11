@@ -22,7 +22,7 @@ then
     fi       
     echo -e "\n[+] 'baids' is now installed!"
     echo -e "[-] Now please, load 'baids' executing:\n"
-    echo "    source $BAIDS"
+    echo "    source \"$BAIDS\""
     exit 0
 fi
 
