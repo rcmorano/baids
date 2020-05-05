@@ -15,10 +15,14 @@ then
     if [ -f "$BASH_RC" ]
     then
       grep -q "$BAIDS" "$BASH_RC" || echo ". \"${BAIDS}\"" >> "$BASH_RC"
+    else
+      echo ". \"${BAIDS}\"" > "$BASH_RC"
     fi
     if [ -f "$ZSH_RC" ]
     then 
       grep -q "$BAIDS" "$ZSH_RC" || echo ". \"${BAIDS}\"" >> "$ZSH_RC"
+    else
+      echo ". \"${BAIDS}\"" > "$ZSH_RC"
     fi       
     echo -e "\n[+] 'baids' is now installed!"
     echo -e "[-] Now please, load 'baids' executing:\n"
