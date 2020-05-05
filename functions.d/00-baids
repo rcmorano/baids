@@ -44,3 +44,9 @@ function baids-upgrade() {
     cd $OLDPWD
 
 }
+
+function baids-list-functions() {
+
+  grep -or '^function.*()' $HOME/.baids/functions.d | awk -F: '{print $2}' | grep -v '^#' | sed -e 's|function \(.*\)|\1|g' -e 's|[()]||g'
+
+}
